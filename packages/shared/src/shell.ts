@@ -677,12 +677,27 @@ export function resolveKnownWindowsCliDirs(env: NodeJS.ProcessEnv): ReadonlyArra
   const appData = env.APPDATA?.trim();
   const localAppData = env.LOCALAPPDATA?.trim();
   const userProfile = env.USERPROFILE?.trim();
+  const programFilesRoots = Array.from(
+    new Set(
+      [env.ProgramW6432, env.ProgramFiles, env["ProgramFiles(x86)"]]
+        .map((value) => value?.trim())
+        .filter((value): value is string => Boolean(value)),
+    ),
+  );
 
   return [
     ...(appData ? [`${appData}\\npm`] : []),
-    ...(localAppData ? [`${localAppData}\\Programs\\nodejs`, `${localAppData}\\Volta\\bin`] : []),
-    ...(localAppData ? [`${localAppData}\\pnpm`] : []),
+    ...(localAppData
+      ? [
+          `${localAppData}\\Programs\\nodejs`,
+          `${localAppData}\\Programs\\Git\\cmd`,
+          `${localAppData}\\Programs\\GitHub CLI`,
+          `${localAppData}\\Volta\\bin`,
+          `${localAppData}\\pnpm`,
+        ]
+      : []),
     ...(userProfile ? [`${userProfile}\\.bun\\bin`, `${userProfile}\\scoop\\shims`] : []),
+    ...programFilesRoots.flatMap((root) => [`${root}\\Git\\cmd`, `${root}\\GitHub CLI`]),
   ];
 }
 

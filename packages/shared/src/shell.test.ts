@@ -330,14 +330,22 @@ describe("resolveKnownWindowsCliDirs", () => {
         APPDATA: "C:\\Users\\testuser\\AppData\\Roaming",
         LOCALAPPDATA: "C:\\Users\\testuser\\AppData\\Local",
         USERPROFILE: "C:\\Users\\testuser",
+        ProgramFiles: "C:\\Program Files",
+        "ProgramFiles(x86)": "C:\\Program Files (x86)",
       }),
     ).toEqual([
       "C:\\Users\\testuser\\AppData\\Roaming\\npm",
       "C:\\Users\\testuser\\AppData\\Local\\Programs\\nodejs",
+      "C:\\Users\\testuser\\AppData\\Local\\Programs\\Git\\cmd",
+      "C:\\Users\\testuser\\AppData\\Local\\Programs\\GitHub CLI",
       "C:\\Users\\testuser\\AppData\\Local\\Volta\\bin",
       "C:\\Users\\testuser\\AppData\\Local\\pnpm",
       "C:\\Users\\testuser\\.bun\\bin",
       "C:\\Users\\testuser\\scoop\\shims",
+      "C:\\Program Files\\Git\\cmd",
+      "C:\\Program Files\\GitHub CLI",
+      "C:\\Program Files (x86)\\Git\\cmd",
+      "C:\\Program Files (x86)\\GitHub CLI",
     ]);
   });
 });
@@ -474,6 +482,8 @@ effectIt.layer(NodeServices.layer)("resolveWindowsEnvironment", (it) => {
         PATH: [
           "C:\\Users\\testuser\\AppData\\Roaming\\npm",
           "C:\\Users\\testuser\\AppData\\Local\\Programs\\nodejs",
+          "C:\\Users\\testuser\\AppData\\Local\\Programs\\Git\\cmd",
+          "C:\\Users\\testuser\\AppData\\Local\\Programs\\GitHub CLI",
           "C:\\Users\\testuser\\AppData\\Local\\Volta\\bin",
           "C:\\Users\\testuser\\AppData\\Local\\pnpm",
           "C:\\Users\\testuser\\.bun\\bin",
@@ -522,6 +532,8 @@ effectIt.layer(NodeServices.layer)("resolveWindowsEnvironment", (it) => {
           "C:\\Windows\\System32",
           "C:\\Users\\testuser\\AppData\\Roaming\\npm",
           "C:\\Users\\testuser\\AppData\\Local\\Programs\\nodejs",
+          "C:\\Users\\testuser\\AppData\\Local\\Programs\\Git\\cmd",
+          "C:\\Users\\testuser\\AppData\\Local\\Programs\\GitHub CLI",
           "C:\\Users\\testuser\\AppData\\Local\\Volta\\bin",
           "C:\\Users\\testuser\\AppData\\Local\\pnpm",
           "C:\\Users\\testuser\\.bun\\bin",

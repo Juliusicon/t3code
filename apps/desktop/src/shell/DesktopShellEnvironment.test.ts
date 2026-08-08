@@ -204,6 +204,7 @@ describe("DesktopShellEnvironment", () => {
         APPDATA: "C:\\Users\\testuser\\AppData\\Roaming",
         LOCALAPPDATA: "C:\\Users\\testuser\\AppData\\Local",
         USERPROFILE: "C:\\Users\\testuser",
+        ProgramFiles: "C:\\Program Files",
       };
 
       yield* runShellEnvironment({
@@ -229,10 +230,14 @@ describe("DesktopShellEnvironment", () => {
           "C:\\Windows\\System32",
           "C:\\Users\\testuser\\AppData\\Roaming\\npm",
           "C:\\Users\\testuser\\AppData\\Local\\Programs\\nodejs",
+          "C:\\Users\\testuser\\AppData\\Local\\Programs\\Git\\cmd",
+          "C:\\Users\\testuser\\AppData\\Local\\Programs\\GitHub CLI",
           "C:\\Users\\testuser\\AppData\\Local\\Volta\\bin",
           "C:\\Users\\testuser\\AppData\\Local\\pnpm",
           "C:\\Users\\testuser\\.bun\\bin",
           "C:\\Users\\testuser\\scoop\\shims",
+          "C:\\Program Files\\Git\\cmd",
+          "C:\\Program Files\\GitHub CLI",
           "C:\\Custom\\Bin",
         ].join(";"),
       );
